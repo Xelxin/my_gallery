@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Posts" %>
+
+<h1 class='posts-container'>Posts</h1>
+
+<div class='posts-container'>
+  Size:
+  <%= @posts.size %>
+</div>
+
+<div id="posts" class='posts-container'>
+  <% @posts.size %>
+  <% @posts.each do |post| %>
+    <hr>
+    <%= render post %>
+    <p>
+      <%= link_to "Show this post", post %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New post", new_post_path %>

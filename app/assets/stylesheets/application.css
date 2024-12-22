@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ .posts-container {
+    text-align: center;
+    border: 5px solid green;
+ }
