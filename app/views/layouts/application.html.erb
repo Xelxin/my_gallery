@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
   <head>
+  
     <title><%= content_for(:title) || "My Gallery" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,9 +17,23 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
 
   <body>
+
+    <div>
+      Created using Ruby Rails
+    </div>
+    <% if user_signed_in? %>
+      <p>Welcome, <%= current_user.email %>!</p>
+      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Sign Up', new_user_registration_path %> |
+      <%= link_to 'Login', new_user_session_path %>
+    <% end %>
     <%= yield %>
+
   </body>
+  
 </html>

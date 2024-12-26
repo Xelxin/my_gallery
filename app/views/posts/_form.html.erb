@@ -16,6 +16,11 @@
     <%= form.text_field :title %>
   </div>
 
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.select :category, ['News', 'Blog', 'Tutorial', 'Review'], prompt: 'Select a category' %>
+  </div>
+
   <div>
     <%= form.label :body, style: "display: block" %>
     <%= form.text_area :body %>
