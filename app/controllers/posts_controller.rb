@@ -1,11 +1,14 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ show edit update destroy index new create ]
+  before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
   def index
     # puts "This is a test akdjiapsdas"
     @posts = Post.all
-    puts @posts
+    # puts "!!!!!!!!!!!!!!!!!!!"
+    # puts current_user.id
+    # puts current_user.email
   end
 
   # GET /posts/1 or /posts/1.json
@@ -24,6 +27,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
