@@ -21,6 +21,11 @@
     <%= form.select :category, ['News', 'Blog', 'Tutorial', 'Review'], prompt: 'Select a category' %>
   </div>
 
+  <div class="field">
+    <%= form.label :publish_at %>
+    <%= form.datetime_select :publish_at %>
+  </div>
+
   <div>
     <%= form.label :body, style: "display: block" %>
     <%= form.text_area :body %>

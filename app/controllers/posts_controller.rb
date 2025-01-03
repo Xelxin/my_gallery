@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   def index
     # puts "This is a test akdjiapsdas"
     @posts = Post.all
+    @posts = Post.where("publish_at < '#{Time.now}'")
+    # @posts = Post.published
     # puts "!!!!!!!!!!!!!!!!!!!"
     # puts current_user.id
     # puts current_user.email
@@ -24,10 +26,15 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def drafts
+    @posts = Post.drafts
+  end
+  
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.user_email = current_user.email  # Add the user's email
 
     respond_to do |format|
       if @post.save
@@ -71,6 +78,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :category) # Add :category
+      params.require(:post).permit(:title, :body, :category, :user_email, :publish_at, :content, :status) # Add :category
     end
 end
